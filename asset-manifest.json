@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/Split-The-Bill/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/Split-The-Bill/static/js/main.586080b3.chunk.js",
+    "main.js.map": "/Split-The-Bill/static/js/main.586080b3.chunk.js.map",
+    "runtime-main.js": "/Split-The-Bill/static/js/runtime-main.239680c3.js",
+    "runtime-main.js.map": "/Split-The-Bill/static/js/runtime-main.239680c3.js.map",
+    "static/js/2.adb33429.chunk.js": "/Split-The-Bill/static/js/2.adb33429.chunk.js",
+    "static/js/2.adb33429.chunk.js.map": "/Split-The-Bill/static/js/2.adb33429.chunk.js.map",
+    "static/js/3.6e0f5dfc.chunk.js": "/Split-The-Bill/static/js/3.6e0f5dfc.chunk.js",
+    "static/js/3.6e0f5dfc.chunk.js.map": "/Split-The-Bill/static/js/3.6e0f5dfc.chunk.js.map",
+    "index.html": "/Split-The-Bill/index.html",
+    "service-worker.js": "/Split-The-Bill/service-worker.js",
+    "service-worker.js.map": "/Split-The-Bill/service-worker.js.map",
+    "static/css/main.6dea0f05.chunk.css.map": "/Split-The-Bill/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.adb33429.chunk.js.LICENSE.txt": "/Split-The-Bill/static/js/2.adb33429.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.239680c3.js",
+    "static/js/2.adb33429.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.586080b3.chunk.js"
+  ]
+}
