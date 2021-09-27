@@ -1,26 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider as ScThemeProvider } from 'styled-components';
+import { Grid } from '@material-ui/core';
+import { makeStyles, ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
+import Header from './components/Header';
+import Main from './components/Main';
+import Footer from './components/Footer';
+import { scPurplishTheme, muiPurplishTheme } from './components/themes';
+import GlobalStyles from './components/global';
 
-function App() {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.main
+  }
+}));
+
+export default function App() {
+  const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <MuiThemeProvider theme={muiPurplishTheme}>
+      <ScThemeProvider theme={scPurplishTheme}>
+        <GlobalStyles />
+        <Grid 
+          container 
+          direction="column" 
+          alignContent="stretch"
+          justifyContent="flex-start"
+          className={classes.root}
+          spacing={2}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Grid item>
+            <Header />
+          </Grid>
+          <Grid item>
+            <Main />
+          </Grid>
+          <Grid item style={{marginTop: "auto"}}>
+            <Footer />
+          </Grid>
+        </Grid>
+      </ScThemeProvider>
+    </MuiThemeProvider>
   );
 }
-
-export default App;
