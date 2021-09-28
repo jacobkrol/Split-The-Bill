@@ -1,12 +1,17 @@
 import React from 'react';
 import { AppBar, makeStyles, Toolbar, Typography } from '@material-ui/core';
-import { MonetizationOn } from '@material-ui/icons';
+import Logo from '../data/logo-64.png';
 
 const useStyles = makeStyles(theme => ({
 	offset: theme.mixins.toolbar,
 	title: {
 		margin: '12px 0',
 		textAlign: 'center'
+	},
+	image: {
+		borderRadius: '5px',
+		margin: '0.5rem',
+		height: '2.5rem'
 	}
 }));
 
@@ -17,7 +22,7 @@ export default function Header() {
 		<React.Fragment>
 			<AppBar position="fixed" color="primary">
 				<Toolbar>
-					<MonetizationOn />
+					<img src={Logo} alt="Split the bill logo" className={classes.image} />
 				</Toolbar>
 			</AppBar>
 			<div className={classes.offset} />
