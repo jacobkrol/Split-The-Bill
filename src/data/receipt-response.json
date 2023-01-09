@@ -1,0 +1,258 @@
+{
+  "ocr_type": "receipts",
+  "request_id": "P_76.136.32.107_lca3072x_ll7",
+  "file_name": "receipt.jpg",
+  "request_received_on": 1672378543834,
+  "success": true,
+  "image_width": 3024,
+  "image_height": 4032,
+  "image_rotation": -0.006,
+  "recognition_completed_on": 1672378545754,
+  "receipts": [
+    {
+      "merchant_name": "The Beetle Bar and Grill",
+      "merchant_address": "2532 W Chicago Ave, Chicago, IL 60622, USA",
+      "merchant_phone": "+1 773-384-0701",
+      "merchant_website": null,
+      "merchant_tax_reg_no": null,
+      "merchant_company_reg_no": null,
+      "region": null,
+      "mall": null,
+      "country": "US",
+      "receipt_no": "773-384-0701",
+      "date": "2022-06-27",
+      "time": "18:35",
+      "items": [
+        {
+          "amount": 35.0,
+          "category": null,
+          "description": "Charlatan",
+          "flags": "",
+          "qty": 5,
+          "remarks": null,
+          "tags": null,
+          "unitPrice": null
+        },
+        {
+          "amount": 7.0,
+          "category": null,
+          "description": "Off Color Apex Predator",
+          "flags": "",
+          "qty": null,
+          "remarks": null,
+          "tags": null,
+          "unitPrice": null
+        },
+        {
+          "amount": 16.0,
+          "category": null,
+          "description": "Allagash White",
+          "flags": "",
+          "qty": 2,
+          "remarks": null,
+          "tags": null,
+          "unitPrice": null
+        },
+        {
+          "amount": 14.0,
+          "category": null,
+          "description": "Bodem",
+          "flags": "",
+          "qty": 2,
+          "remarks": null,
+          "tags": null,
+          "unitPrice": null
+        },
+        {
+          "amount": 12.0,
+          "category": null,
+          "description": "Beetle Wings",
+          "flags": "",
+          "qty": null,
+          "remarks": null,
+          "tags": null,
+          "unitPrice": null
+        },
+        {
+          "amount": 10.0,
+          "category": null,
+          "description": "Nachos",
+          "flags": "",
+          "qty": null,
+          "remarks": null,
+          "tags": null,
+          "unitPrice": null
+        },
+        {
+          "amount": 4.0,
+          "category": null,
+          "description": "Chicken",
+          "flags": "",
+          "qty": null,
+          "remarks": null,
+          "tags": null,
+          "unitPrice": null
+        },
+        {
+          "amount": 30.0,
+          "category": null,
+          "description": "Figgy Stardust",
+          "flags": "",
+          "qty": 2,
+          "remarks": null,
+          "tags": null,
+          "unitPrice": null
+        },
+        {
+          "amount": 15.0,
+          "category": null,
+          "description": "Backwoods",
+          "flags": "",
+          "qty": null,
+          "remarks": null,
+          "tags": null,
+          "unitPrice": null
+        },
+        {
+          "amount": 8.0,
+          "category": null,
+          "description": "PBR",
+          "flags": "",
+          "qty": 2,
+          "remarks": null,
+          "tags": null,
+          "unitPrice": null
+        },
+        {
+          "amount": 7.0,
+          "category": null,
+          "description": "Solemn Oath",
+          "flags": "",
+          "qty": null,
+          "remarks": null,
+          "tags": null,
+          "unitPrice": null
+        }
+      ],
+      "currency": "USD",
+      "total": 165.62,
+      "subtotal": 158.0,
+      "tax": null,
+      "service_charge": null,
+      "tip": null,
+      "payment_method": null,
+      "payment_details": null,
+      "credit_card_type": null,
+      "credit_card_number": null,
+      "ocr_text": "               The Beetle Bar & Grill\n                 2532 W Chicago Ave\n                    773-384-0701\n     Server: Kaitlyn S\n     Check #18                        Table 1\n    Ordered:                   6/27/22 6:35 PM\n    5 Charlatan                        $35.00\n    Off Color Apex Predator             $7.00\n    2 Allagash White                   $16.00\n   2 Bodem                             $14.00\n   Beetle Wings                        $12.00\n   Nachos                              $10.00\n    Chicken                             $4.00\n  2 Figgy Stardust                     $30.00\n  Backwoods                             $15.00\n  2 PBR                                  $8.00\n Solemn Oath                             $7.00\n Subtotal                              $158.00\n Tax\n                                         $7.62\n Total\n                                       $165.62",
+      "ocr_confidence": 98.67,
+      "width": 1411,
+      "height": 1923,
+      "avg_char_width": 30.7056,
+      "avg_line_height": 54.3329,
+      "category": "bar,restaurant,food",
+      "source_locations": {
+        "date": [
+          [
+            {
+              "y": 1568,
+              "x": 1563
+            },
+            {
+              "y": 1565,
+              "x": 2056
+            },
+            {
+              "y": 1630,
+              "x": 2056
+            },
+            {
+              "y": 1633,
+              "x": 1563
+            }
+          ]
+        ],
+        "total": [
+          [
+            {
+              "y": 2977,
+              "x": 1826
+            },
+            {
+              "y": 2976,
+              "x": 2086
+            },
+            {
+              "y": 3041,
+              "x": 2086
+            },
+            {
+              "y": 3042,
+              "x": 1826
+            }
+          ]
+        ],
+        "receipt_no": [
+          [
+            {
+              "y": 1270,
+              "x": 1241
+            },
+            {
+              "y": 1268,
+              "x": 1607
+            },
+            {
+              "y": 1323,
+              "x": 1607
+            },
+            {
+              "y": 1325,
+              "x": 1241
+            }
+          ]
+        ],
+        "subtotal": [
+          [
+            {
+              "y": 2781,
+              "x": 1824
+            },
+            {
+              "y": 2781,
+              "x": 2076
+            },
+            {
+              "y": 2842,
+              "x": 2076
+            },
+            {
+              "y": 2842,
+              "x": 1824
+            }
+          ]
+        ],
+        "doc": [
+          [
+            {
+              "y": 1028,
+              "x": 582
+            },
+            {
+              "y": 1019,
+              "x": 2134
+            },
+            {
+              "y": 3134,
+              "x": 2147
+            },
+            {
+              "y": 3144,
+              "x": 595
+            }
+          ]
+        ]
+      }
+    }
+  ]
+}
