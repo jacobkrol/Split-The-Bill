@@ -23,10 +23,59 @@
       "src": "logo-480.png",
       "type": "image/png",
       "sizes": "480x480"
+    },
+    {
+      "src": "logo-512.png",
+      "type": "image/png",
+      "purpose": "any",
+      "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "screenshots": [
+    {
+      "src": "screenshot-general.jpg",
+      "sizes": "657x1238",
+      "type": "image/jpg",
+      "platform": "narrow",
+      "label": "General screenshot of manual item cost entry"
+    },
+    {
+      "src": "screenshot-phase-2.png",
+      "sizes": "1080x2011",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Expanded phase 2 tile showing option to take photo of receipt"
+    },
+    {
+      "src": "screenshot-take-photo.png",
+      "sizes": "326x585",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "User taking photo of the receipt in the app"
+    },
+    {
+      "src": "screenshot-loading-ocr.png",
+      "sizes": "1080x2015",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Response from receipt reading server loading screen"
+    },
+    {
+      "src": "screenshot-share-item.png",
+      "sizes": "1080x2009",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Assigning the cost of an item to multiple people at the table"
+    }
+  ],
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#957FEF",
-  "background_color": "#F7F0F7"
+  "background_color": "#F7F0F7",
+  "description": "Split one big bill proportionally among your friends based on how much was actually theirs",
+  "dir": "ltr",
+  "lang": "en",
+  "orientation": "portrait",
+  "categories": ["finance", "productivity", "utilities"]
 }
+
