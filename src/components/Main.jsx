@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Card,
   Typography,
@@ -18,7 +18,7 @@ import { ExpandMoreRounded, PhotoCamera } from "@material-ui/icons";
 import InputRow from "./InputRow";
 import { names } from "../data/names";
 import ItemDialog from "./ItemDialog";
-// import response from "../data/receipt-response.json";
+// import response from "../data/receipt-response-short.json";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -58,6 +58,22 @@ const expandIconOpen = {
 
 const nullifyInputValue = (evt) => (evt.target.value = null);
 
+const getGrowOffsets = () => {
+  const dialogRect = document
+    .getElementById("receipt-dialog")
+    ?.getBoundingClientRect();
+  const buttonRect = document
+    .getElementById("reopen-receipt")
+    ?.getBoundingClientRect();
+
+  if (!dialogRect || !buttonRect) return;
+
+  return {
+    x: Math.round(buttonRect.x - dialogRect.x),
+    y: Math.round(buttonRect.y - dialogRect.y)
+  };
+};
+
 export default function Main() {
   const classes = useStyles();
   const theme = useTheme();
@@ -72,6 +88,7 @@ export default function Main() {
   const [itemDialogOpen, setItemDialogOpen] = useState(false);
   const [ocrLoading, setOcrLoading] = useState(false);
   const [ocrData, setOcrData] = useState({});
+  const growOffsets = useRef();
 
   const togglePhase = (n) => {
     setOpenPhases((current) => {
@@ -253,14 +270,16 @@ export default function Main() {
     formData.append("api_key", "TEST");
     formData.append("recognizer", "auto");
     formData.append("file", file);
-    const data = await fetch(receiptOcrEndpoint, {
+    const fetchResponse = await fetch(receiptOcrEndpoint, {
       method: "POST",
       body: formData
-    }).then((res) => res.json());
+    });
+    const data = await fetchResponse.json();
+    // const fetchResponse = { status: 200 };
     // const data = await new Promise((resolve) => {
     //   setTimeout(() => {
     //     resolve(response);
-    //   }, 5000);
+    //   }, 15000);
     // });
 
     // mark as no longer loading
@@ -270,7 +289,8 @@ export default function Main() {
     if (!data.success || !data?.receipts?.[0]) {
       setItemDialogOpen(false);
       alert(
-        "Failure to read receipt. Please try again later or enter the receipt data manually."
+        "Failure to read receipt. Please try again later or enter the receipt data manually." +
+          ` [${fetchResponse.status}]`
       );
       return;
     }
@@ -290,6 +310,8 @@ export default function Main() {
         isLoading={ocrLoading}
         setCosts={setCosts}
         people={people}
+        growOffsets={growOffsets.current}
+        getGrowOffsets={getGrowOffsets}
       />
       {enteringData ? (
         <>
@@ -415,7 +437,22 @@ export default function Main() {
                           <PhotoCamera />
                         </IconButton>
                       </label>
-                      <Collapse in={!showCosts}>
+                      <Collapse in={Object.keys(ocrData).length}>
+                        <Button
+                          id="reopen-receipt"
+                          variant="outlined"
+                          onClick={() => {
+                            growOffsets.current = getGrowOffsets();
+                            setItemDialogOpen(true);
+                          }}
+                          style={{ margin: "8px 0" }}
+                        >
+                          <Typography color="primary">
+                            Reopen Current Receipt
+                          </Typography>
+                        </Button>
+                      </Collapse>
+                      <Collapse in={!(costs.length > 1 || showCosts)}>
                         <Button
                           variant="outlined"
                           onClick={() => setShowCosts(true)}

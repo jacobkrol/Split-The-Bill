@@ -11,6 +11,8 @@ import {
   FormControl,
   FormControlLabel,
   FormGroup,
+  Grow,
+  IconButton,
   InputLabel,
   LinearProgress,
   makeStyles,
@@ -19,6 +21,7 @@ import {
   Typography
 } from "@material-ui/core";
 import converter from "number-to-words";
+import { MinimizeRounded } from "@material-ui/icons";
 
 const loadingPhrases = [
   "Parsing receipt...",
@@ -46,6 +49,15 @@ const useStyles = makeStyles((theme) => ({
   },
   chip: {
     margin: "2px"
+  },
+  windowButton: {
+    position: "absolute",
+    top: "10px",
+    right: "15px",
+    height: "1rem",
+    width: "1rem",
+    border: "2px solid rgba(150,150,150,0.5)",
+    borderRadius: "4px"
   }
 }));
 
@@ -67,14 +79,29 @@ const getSharedPriceArr = (amountToSplit, numOfPeople) => {
   return resultArr.map((cents) => cents / 100);
 };
 
+let offsets;
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return (
+    <Grow
+      ref={ref}
+      {...props}
+      timeout={500}
+      style={
+        offsets ? { transformOrigin: `${offsets.x}px ${offsets.y}px` } : {}
+      }
+    />
+  );
+});
+
 export default function ItemDialog({
   open,
   setOpen,
   receipt,
-  setReceipt,
   isLoading,
   setCosts,
-  people
+  people,
+  growOffsets,
+  getGrowOffsets
 }) {
   const classes = useStyles();
 
@@ -89,17 +116,14 @@ export default function ItemDialog({
   const loadingTextIntRef = useRef(null);
 
   const cancelDialog = () => {
-    setDialogText("");
-    setItemPlural(false);
-    setItemOrdinal(0);
-    setRunningCosts([]);
-    setRunningCostIndex(0);
-    setSelectedPeople([]);
-    setLoadingText("Loading results...");
-    setAssignMultiple(false);
-    setReceipt({});
+    offsets = getGrowOffsets();
+    assignCost({ advance: false });
     setOpen(false);
   };
+
+  useEffect(() => {
+    offsets = growOffsets;
+  }, [growOffsets]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -150,10 +174,19 @@ export default function ItemDialog({
         nextItem.qty > 1 ? " each" : ""
       }.`
     );
-    setAssignMultiple(false);
+    if (Array.isArray(nextItem.person) && nextItem.person.length === 1) {
+      setSelectedPeople(nextItem.person[0].toString());
+      setAssignMultiple(false);
+    } else if (Array.isArray(nextItem.person) && nextItem.person.length > 1) {
+      setSelectedPeople(nextItem.person);
+      setAssignMultiple(true);
+    } else {
+      setSelectedPeople("");
+      setAssignMultiple(false);
+    }
   }, [runningCosts, runningCostIndex]);
 
-  const assignCost = () => {
+  const assignCost = ({ advance = true, clickOnNext = false }) => {
     if (
       Array.isArray(selectedPeople)
         ? !selectedPeople.length
@@ -165,9 +198,10 @@ export default function ItemDialog({
     newRunningCosts[runningCostIndex].person = Array.isArray(selectedPeople)
       ? selectedPeople.filter((person) => person !== "")
       : [selectedPeople];
+    const newRunningCostIndex = runningCostIndex + 1;
 
     setRunningCosts(newRunningCosts);
-    setRunningCostIndex((prev) => prev + 1);
+    if (advance) setRunningCostIndex(newRunningCostIndex);
     setSelectedPeople("");
     setAssignMultiple(false);
 
@@ -175,7 +209,8 @@ export default function ItemDialog({
     const noCostsRemaining = !newRunningCosts.filter(
       (cost) => cost.person.length === 0
     ).length;
-    if (noCostsRemaining) {
+    const atEndOfList = newRunningCostIndex === newRunningCosts.length;
+    if ((clickOnNext && atEndOfList) || (!clickOnNext && noCostsRemaining)) {
       const finalCosts = [];
       runningCosts.forEach((item) => {
         if (item.person.length > 1) {
@@ -191,7 +226,8 @@ export default function ItemDialog({
         }
       });
       setCosts(finalCosts);
-      cancelDialog();
+      if (clickOnNext && atEndOfList) setRunningCostIndex(0);
+      setOpen(false);
       return;
     }
   };
@@ -199,12 +235,29 @@ export default function ItemDialog({
   const backCost = () => {
     if (runningCostIndex === 0) return;
 
+    assignCost({ advance: false });
     setRunningCostIndex((prev) => prev - 1);
   };
 
   return (
-    <Dialog open={open} onClose={() => setOpen(false)} fullWidth maxWidth="md">
+    <Dialog
+      id="receipt-dialog"
+      open={open}
+      onClose={() => setOpen(false)}
+      TransitionComponent={Transition}
+      keepMounted
+      fullWidth
+      maxWidth="md"
+    >
       <DialogTitle>Split Receipt Items</DialogTitle>
+      <IconButton
+        color="primary"
+        aria-label="minimize receipt window"
+        className={classes.windowButton}
+        onClick={cancelDialog}
+      >
+        <MinimizeRounded />
+      </IconButton>
       <DialogContent>
         {isLoading ? (
           <>
@@ -297,18 +350,6 @@ export default function ItemDialog({
         )}
       </DialogContent>
       <DialogActions>
-        <Button
-          color="primary"
-          onClick={() => {
-            const res = window.confirm(
-              "Are you sure you would like to stop assigning the items on this receipt? All progress will be lost and the image will not be stored."
-            );
-            if (!res) return;
-            cancelDialog();
-          }}
-        >
-          Cancel
-        </Button>
         {!isLoading && (
           <Button
             color="primary"
