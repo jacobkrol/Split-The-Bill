@@ -1,6 +1,6 @@
 {
   "name": "splitthebill",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "private": true,
   "homepage": "https://kroljs.com/Split-The-Bill",
   "dependencies": {
@@ -54,4 +54,3 @@
     ]
   }
 }
-
