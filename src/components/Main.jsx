@@ -437,7 +437,7 @@ export default function Main() {
                           <PhotoCamera />
                         </IconButton>
                       </label>
-                      <Collapse in={Object.keys(ocrData).length}>
+                      <Collapse in={!!Object.keys(ocrData).length}>
                         <Button
                           id="reopen-receipt"
                           variant="outlined"

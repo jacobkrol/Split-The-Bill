@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI', 'Oxygen',
+    font-family: -apple-system, BlinkMacSystemFont, 'Signika', 'Roboto', 'Segoe UI', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -17,6 +17,6 @@ const GlobalStyles = createGlobalStyle`
     font-size: 14px;
     overflow-x: hidden;
   }
-`
+`;
 
 export default GlobalStyles;

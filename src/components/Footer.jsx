@@ -1,12 +1,13 @@
-import React from 'react';
-import { Grid, Link, makeStyles, Typography } from '@material-ui/core';
+import React from "react";
+import { Grid, Link, makeStyles, Typography } from "@material-ui/core";
+import { version } from "../../package.json";
 
 const useStyles = makeStyles((theme) => ({
   footer: {
-    marginTop: '3rem'
+    marginTop: "3rem"
   },
   separator: {
-    margin: '0 12px'
+    margin: "0 12px"
   }
 }));
 
@@ -18,7 +19,9 @@ export default function Footer() {
       <Typography variant="body1">
         Copyright {new Date().getFullYear()}
       </Typography>
-      <Typography className={classes.separator}>{'//'}</Typography>
+      <Typography className={classes.separator}>{"//"}</Typography>
+      <Typography variant="body1">v{version}</Typography>
+      <Typography className={classes.separator}>{"//"}</Typography>
       <Typography variant="body1">
         <Link
           href="https://kroljs.com"

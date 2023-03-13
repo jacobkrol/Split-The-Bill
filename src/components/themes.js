@@ -1,30 +1,50 @@
 import { createTheme } from "@material-ui/core/styles";
 
-export const scPurplishTheme = {
-  background: "#F7F2F7", //"#F9F2F9",
-  foreground: "#F6E3D6", //"#EFD9CE",
+const colors = {
+  background: "#F7F2F7",
+  foreground: "#FCFAFC",
   text: "#393239",
   primary: "#957FEF",
-  secondary: "#B79CED"
+  primaryDesat: "#c8c2e0", //"#a79cd3",
+  faded: "#696969"
+};
+export const scPurplishTheme = {
+  background: colors.background,
+  foreground: colors.foreground,
+  text: colors.text,
+  primary: colors.primary
 };
 
 export const muiPurplishTheme = createTheme({
   palette: {
     primary: {
-      main: "#957FEF"
-    },
-    secondary: {
-      main: "#B79CED"
+      main: colors.primary,
+      faded: colors.primaryDesat
     },
     text: {
-      main: "#393239",
-      faded: "#696969"
+      main: colors.text,
+      faded: colors.faded
     },
     background: {
-      main: "#F7F0F7"
+      main: colors.background
     },
     foreground: {
-      main: "#FCFAFC"
+      main: colors.foreground
     }
+  },
+  typography: {
+    fontFamily: [
+      "-apple-system",
+      "BlinkMacSystemFont",
+      "Signika",
+      '"Segoe UI"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"'
+    ].join(",")
   }
 });
