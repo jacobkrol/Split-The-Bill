@@ -68,7 +68,7 @@
       "label": "Assigning the cost of an item to multiple people at the table"
     }
   ],
-  "start_url": "./",
+  "start_url": ".",
   "display": "standalone",
   "theme_color": "#957FEF",
   "background_color": "#F7F0F7",
